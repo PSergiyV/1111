@@ -1,0 +1,52 @@
+{
+  "cities": [
+    {
+      "id": "odesa",
+      "name": "Одесса",
+      "tours": [
+        {
+          "id": "odesa-center",
+          "title": "Исторический центр",
+          "description": "Прогулка по главным улицам и площадям.",
+          "audioURL": "https://example.com/audio/odesa-center.mp3",
+          "stops": [
+            {
+              "name": "Потёмкинская лестница",
+              "lat": 46.4899,
+              "lon": 30.7423
+            },
+            {
+              "name": "Оперный театр",
+              "lat": 46.4863,
+              "lon": 30.7413
+            },
+            {
+              "name": "Дерибасовская",
+              "lat": 46.485,
+              "lon": 30.742
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lviv",
+      "name": "Львов",
+      "tours": [
+        {
+          "id": "lviv-rynok",
+          "title": "Площадь Рынок",
+          "description": "Сердце старого города.",
+          "audioURL": "https://raw.githubusercontent.com/PSergiyV/1111/main/Muzyka%20nas%20Demo%202.mp3",
+          "stops": [
+            {
+              "name": "Ратуша",
+              "lat": 49.8419,
+              "lon": 24.0315
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
