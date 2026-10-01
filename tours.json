@@ -12,7 +12,7 @@
           "theme": "history",
           "previewURL": "Lvviv history demo.mp3",
           "price": "49 грн",
-          "buyURL": "https://example.com/pay/lviv-history",
+          "buyURL": "lviv-history.mp3",
           "stops": [
             {
               "name": "Ратуша на площі Ринок",
