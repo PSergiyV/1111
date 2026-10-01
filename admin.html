@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Выдача кодов</title>
+<style>
+body{font:18px/1.4 -apple-system,"Segoe UI",Arial,sans-serif;max-width:520px;margin:0 auto;padding:16px}
+label{display:block;margin:14px 0 4px;font-weight:600}
+input,select,button{width:100%;padding:12px;font-size:18px;border-radius:10px;border:1px solid #bbb;box-sizing:border-box}
+button{background:#0a6fe0;color:#fff;border:0;margin-top:16px;cursor:pointer}
+.code{font:700 26px monospace;letter-spacing:2px;background:#f0f0f3;padding:10px;border-radius:10px;margin:8px 0;word-break:break-all;cursor:pointer}
+.err{color:#d92d20;margin-top:12px}.hint{color:#666;font-size:15px}
+</style></head><body>
+<h1>Выдача кодов доступа</h1>
+<label for="key">Пароль администратора (ADMIN_KEY)</label>
+<input id="key" type="password" autocomplete="off">
+<label for="tour">Экскурсия</label><select id="tour"></select>
+<label for="n">Сколько кодов</label><input id="n" type="number" min="1" max="20" value="1">
+<button id="go">Выдать код</button>
+<div id="out"></div>
+<script>
+let API='';
+const $=id=>document.getElementById(id), out=$('out');
+function msg(t,cls){out.innerHTML='';const d=document.createElement('div');d.className=cls||'';d.textContent=t;out.appendChild(d)}
+fetch('tours.json').then(r=>r.json()).then(d=>{
+  API=d.api;
+  d.cities.forEach(c=>c.tours.forEach(t=>{const o=document.createElement('option');o.value=t.id;o.textContent=c.name+' — '+t.title;$('tour').appendChild(o)}));
+}).catch(()=>msg('Не удалось загрузить tours.json','err'));
+$('go').onclick=async()=>{
+  if(!$('key').value)return msg('Введите пароль администратора.','err');
+  try{
+    const r=await fetch(API+'/admin/codes',{method:'POST',headers:{'Authorization':'Bearer '+$('key').value,'Content-Type':'application/json'},
+      body:JSON.stringify({tourId:$('tour').value,count:+$('n').value||1})});
+    const j=await r.json().catch(()=>({}));
+    if(r.status===401)return msg('Неверный пароль администратора.','err');
+    if(!j.ok)return msg(j.error||'Ошибка сервера.','err');
+    out.innerHTML='';
+    j.codes.forEach(c=>{const d=document.createElement('div');d.className='code';d.textContent=c;d.onclick=()=>navigator.clipboard&&navigator.clipboard.writeText(c);out.appendChild(d)});
+    const h=document.createElement('div');h.className='hint';h.textContent='Нажмите на код, чтобы скопировать. Отправьте его покупателю.';out.appendChild(h);
+  }catch{msg('Не удалось связаться с сервером. Проверьте адрес в tours.json и интернет.','err')}
+};
+</script></body></html>
