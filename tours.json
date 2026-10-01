@@ -1,48 +1,273 @@
 {
+  "api": "https://audio-tours.ВАШ-АККАУНТ.workers.dev",
   "cities": [
     {
-      "id": "odesa",
-      "name": "Одесса",
+      "id": "lviv",
+      "name": "Львів",
       "tours": [
         {
-          "id": "odesa-center",
-          "title": "Исторический центр",
-          "description": "Прогулка по главным улицам и площадям.",
-          "audioURL": "https://example.com/audio/odesa-center.mp3",
+          "id": "lviv-history",
+          "title": "Історія Львова",
+          "description": "Від заснування міста до наших днів.",
+          "theme": "history",
+          "previewURL": "demo-preview.mp3",
+          "price": "49 грн",
+          "buyURL": "https://example.com/pay/lviv-history",
           "stops": [
             {
-              "name": "Потёмкинская лестница",
-              "lat": 46.4899,
-              "lon": 30.7423
+              "name": "Ратуша на площі Ринок",
+              "lat": 49.8419,
+              "lon": 24.0315
             },
             {
-              "name": "Оперный театр",
-              "lat": 46.4863,
-              "lon": 30.7413
+              "name": "Латинський кафедральний собор",
+              "lat": 49.8418,
+              "lon": 24.0329
             },
             {
-              "name": "Дерибасовская",
-              "lat": 46.485,
-              "lon": 30.742
+              "name": "Порохова вежа",
+              "lat": 49.8438,
+              "lon": 24.0344
+            },
+            {
+              "name": "Високий замок",
+              "lat": 49.8487,
+              "lon": 24.0405
+            }
+          ]
+        },
+        {
+          "id": "lviv-mystic",
+          "title": "Львів містичний",
+          "description": "Таємниці, привиди та старі підземелля.",
+          "theme": "mystic",
+          "previewURL": "demo-preview.mp3",
+          "price": "49 грн",
+          "buyURL": "https://example.com/pay/lviv-mystic",
+          "stops": [
+            {
+              "name": "Личаківський цвинтар",
+              "lat": 49.8375,
+              "lon": 24.0498
+            },
+            {
+              "name": "Порохова вежа",
+              "lat": 49.8438,
+              "lon": 24.0344
+            },
+            {
+              "name": "Вірменський собор",
+              "lat": 49.8412,
+              "lon": 24.0344
+            },
+            {
+              "name": "Високий замок",
+              "lat": 49.8487,
+              "lon": 24.0405
+            }
+          ]
+        },
+        {
+          "id": "lviv-legends",
+          "title": "Легенди Львова",
+          "description": "Історії, які розповідають на вулицях.",
+          "theme": "legends",
+          "previewURL": "demo-preview.mp3",
+          "price": "49 грн",
+          "buyURL": "https://example.com/pay/lviv-legends",
+          "stops": [
+            {
+              "name": "Ратуша на площі Ринок",
+              "lat": 49.8419,
+              "lon": 24.0315
+            },
+            {
+              "name": "Оперний театр (Львів)",
+              "lat": 49.844,
+              "lon": 24.0266
+            },
+            {
+              "name": "Собор святого Юра",
+              "lat": 49.8387,
+              "lon": 24.0129
+            },
+            {
+              "name": "Вірменський собор",
+              "lat": 49.8412,
+              "lon": 24.0344
             }
           ]
         }
       ]
     },
     {
-      "id": "lviv",
-      "name": "Львов",
+      "id": "uzhhorod",
+      "name": "Ужгород",
       "tours": [
         {
-          "id": "lviv-rynok",
-          "title": "Площадь Рынок",
-          "description": "Сердце старого города.",
-          "audioURL": "https://raw.githubusercontent.com/PSergiyV/1111/main/Muzyka%20nas%20Demo%202.mp3",
+          "id": "uzhhorod-history",
+          "title": "Історія Ужгорода",
+          "description": "Замок, собори та набережна над річкою Уж.",
+          "theme": "history",
+          "previewURL": "demo-preview.mp3",
+          "price": "49 грн",
+          "buyURL": "https://example.com/pay/uzhhorod-history",
           "stops": [
             {
-              "name": "Ратуша",
-              "lat": 49.8419,
-              "lon": 24.0315
+              "name": "Ужгородський замок",
+              "lat": 48.6236,
+              "lon": 22.3
+            },
+            {
+              "name": "Кафедральний собор (Ужгород)",
+              "lat": 48.6229,
+              "lon": 22.3009
+            },
+            {
+              "name": "Набережна Незалежності",
+              "lat": 48.6206,
+              "lon": 22.299
+            },
+            {
+              "name": "Пішохідний міст через Уж",
+              "lat": 48.6188,
+              "lon": 22.298
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kyiv",
+      "name": "Київ",
+      "tours": [
+        {
+          "id": "kyiv-history",
+          "title": "Історія Києва",
+          "description": "Від Золотих воріт до Лаври.",
+          "theme": "history",
+          "previewURL": "demo-preview.mp3",
+          "price": "49 грн",
+          "buyURL": "https://example.com/pay/kyiv-history",
+          "stops": [
+            {
+              "name": "Золоті ворота",
+              "lat": 50.4488,
+              "lon": 30.513
+            },
+            {
+              "name": "Софійський собор",
+              "lat": 50.4529,
+              "lon": 30.5142
+            },
+            {
+              "name": "Андріївський узвіз",
+              "lat": 50.459,
+              "lon": 30.516
+            },
+            {
+              "name": "Києво-Печерська лавра",
+              "lat": 50.4347,
+              "lon": 30.5575
+            }
+          ]
+        },
+        {
+          "id": "kyiv-mystic",
+          "title": "Київ містичний",
+          "description": "Печери, химери та міські таємниці.",
+          "theme": "mystic",
+          "previewURL": "demo-preview.mp3",
+          "price": "49 грн",
+          "buyURL": "https://example.com/pay/kyiv-mystic",
+          "stops": [
+            {
+              "name": "Києво-Печерська лавра",
+              "lat": 50.4347,
+              "lon": 30.5575
+            },
+            {
+              "name": "Андріївський узвіз",
+              "lat": 50.459,
+              "lon": 30.516
+            },
+            {
+              "name": "Будинок з химерами",
+              "lat": 50.4472,
+              "lon": 30.5262
+            },
+            {
+              "name": "Золоті ворота",
+              "lat": 50.4488,
+              "lon": 30.513
+            }
+          ]
+        },
+        {
+          "id": "kyiv-legends",
+          "title": "Легенди Києва",
+          "description": "Перекази про місто на пагорбах.",
+          "theme": "legends",
+          "previewURL": "demo-preview.mp3",
+          "price": "49 грн",
+          "buyURL": "https://example.com/pay/kyiv-legends",
+          "stops": [
+            {
+              "name": "Золоті ворота",
+              "lat": 50.4488,
+              "lon": 30.513
+            },
+            {
+              "name": "Майдан Незалежності",
+              "lat": 50.4501,
+              "lon": 30.5234
+            },
+            {
+              "name": "Андріївський узвіз",
+              "lat": 50.459,
+              "lon": 30.516
+            },
+            {
+              "name": "Будинок з химерами",
+              "lat": 50.4472,
+              "lon": 30.5262
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "odesa",
+      "name": "Одеса",
+      "tours": [
+        {
+          "id": "odesa-history",
+          "title": "Історія Одеси",
+          "description": "Порт, сходи та вулиці південної столиці.",
+          "theme": "history",
+          "previewURL": "demo-preview.mp3",
+          "price": "49 грн",
+          "buyURL": "https://example.com/pay/odesa-history",
+          "stops": [
+            {
+              "name": "Потьомкінські сходи",
+              "lat": 46.4899,
+              "lon": 30.7423
+            },
+            {
+              "name": "Пам’ятник Дюку де Рішельє",
+              "lat": 46.4889,
+              "lon": 30.7415
+            },
+            {
+              "name": "Оперний театр (Одеса)",
+              "lat": 46.4863,
+              "lon": 30.7413
+            },
+            {
+              "name": "Дерибасівська",
+              "lat": 46.485,
+              "lon": 30.742
             }
           ]
         }

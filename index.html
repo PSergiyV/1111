@@ -1,83 +1,117 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="uk">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0a84ff">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Экскурсии">
+<meta name="apple-mobile-web-app-title" content="Екскурсії">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icon-180.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
-<title>Аудиоэкскурсии</title>
+<title>Аудіоекскурсії</title>
 <style>
-:root{--bg:#f5f5f7;--card:#fff;--text:#1c1c1e;--sub:#6e6e73;--acc:#0a84ff;--line:#e3e3e8;--ok:#30a14e}
-@media (prefers-color-scheme:dark){:root{--bg:#000;--card:#1c1c1e;--text:#f2f2f7;--sub:#98989f;--line:#2c2c2e}}
+:root{--bg:#f5f5f7;--card:#fff;--text:#1c1c1e;--sub:#5f5f66;--acc:#0a6fe0;--line:#e3e3e8;--ok:#2c9a4a}
+@media (prefers-color-scheme:dark){:root{--bg:#000;--card:#1c1c1e;--text:#f2f2f7;--sub:#a5a5ad;--line:#2c2c2e;--acc:#4da3ff}}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;min-height:100vh;
+body{margin:0;background:var(--bg);color:var(--text);font:20px/1.3 -apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;min-height:100vh;
 padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
-main{max-width:480px;margin:0 auto;padding:16px}
-h1{font-size:26px;margin:8px 0 12px}
+main{max-width:520px;margin:0 auto;padding:16px}
+h1{font-size:36px;line-height:1.15;margin:8px 0 12px}
+h2{font-size:26px;margin:24px 0 6px}
 .row{display:flex;justify-content:space-between;align-items:center}
-.back,.dl{background:none;border:0;color:var(--acc);font-size:17px;padding:8px 0;cursor:pointer}
-.item{display:flex;justify-content:space-between;align-items:center;width:100%;text-align:left;background:var(--card);color:var(--text);border:0;border-bottom:1px solid var(--line);padding:16px;font-size:17px;cursor:pointer}
-.item:first-of-type{border-radius:12px 12px 0 0}.item:last-of-type{border-radius:0 0 12px 12px;border-bottom:0}.item:only-of-type{border-radius:12px}
-.item small{display:block;color:var(--sub);font-size:14px;margin-top:4px}
-.sub,.foot{color:var(--sub)}.foot{font-size:13px;margin:8px 4px}
-#map{height:240px;border-radius:16px;background:var(--card)}
-.pin span{display:flex;width:26px;height:26px;border-radius:50%;background:#ff3b30;color:#fff;font:700 13px sans-serif;align-items:center;justify-content:center;border:2px solid #fff}
-.stops{color:var(--sub);font-size:13px;margin:8px 0}
-.center{text-align:center}.center p{color:var(--sub);margin:4px 0 12px}
-input[type=range]{width:100%;accent-color:var(--acc)}
-.times{display:flex;justify-content:space-between;color:var(--sub);font-size:13px}
-.ctl{display:flex;justify-content:center;align-items:center;gap:32px;margin:12px 0}
-.ctl button{background:none;border:0;color:var(--acc);cursor:pointer;font-size:30px}
-.ctl .big{font-size:64px}
-.warn{background:var(--card);border-radius:12px;padding:12px;color:#ff3b30;font-size:14px;margin:8px 0}
+.back,.dl{background:none;border:0;color:var(--acc);font-size:24px;padding:10px 0;cursor:pointer}
+.item{display:flex;align-items:center;gap:16px;width:100%;text-align:left;background:var(--card);color:var(--text);border:0;border-radius:20px;padding:14px;margin-bottom:14px;cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.1);font:inherit}
+.pic{width:104px;height:104px;border-radius:16px;overflow:hidden;flex:none;background:var(--line)}
+.pic svg,.pic img{width:100%;height:100%;object-fit:cover;display:block}
+.txt{flex:1;min-width:0}
+.txt b{display:block;font-size:29px;line-height:1.15}
+.txt small{display:block;color:var(--sub);font-size:19px;margin-top:6px}
+.txt .tag{color:var(--acc);font-weight:600}
+.chev{font-size:38px;color:var(--sub)}
+.foot{color:var(--sub);font-size:17px;margin:8px 4px}
+.d{color:var(--sub);font-size:20px;margin:0 0 12px}
+#map{height:320px;border-radius:16px;background:var(--card)}
+.pin span{display:flex;width:34px;height:34px;border-radius:50%;background:#e8352b;color:#fff;font:700 17px sans-serif;align-items:center;justify-content:center;border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.4)}
+.pin.on span{background:var(--ok)}
+.leaflet-popup-content{font-size:18px}
+.leaflet-popup-content button{display:block;margin-top:8px;width:100%;padding:10px;font-size:18px;border:0;border-radius:10px;background:var(--acc);color:#fff}
+.cnt{color:var(--sub);font-size:19px;margin-bottom:10px}
+.stop{display:flex;align-items:center;gap:14px;background:var(--card);border-radius:14px;padding:14px;margin-bottom:10px;font-size:22px}
+.stop input{width:30px;height:30px;accent-color:var(--ok);flex:none}
+input[type=range]{width:100%;height:36px;accent-color:var(--acc)}
+.times{display:flex;justify-content:space-between;color:var(--sub);font-size:18px}
+.ctl{display:flex;justify-content:center;align-items:center;gap:36px;margin:10px 0}
+.ctl button{background:none;border:0;color:var(--acc);cursor:pointer;font-size:40px}
+.ctl .big{font-size:84px}
+.warn{background:var(--card);border-radius:12px;padding:14px;color:#d92d20;font-size:18px;margin:10px 0}
+.pay{background:var(--card);border-radius:16px;padding:16px;margin:12px 0;text-align:center}
+.pay b{font-size:24px}.pay p{margin:6px 0 12px;color:var(--sub);font-size:20px}
+.pay input{width:100%;padding:14px;border-radius:12px;border:2px solid var(--line);background:var(--bg);color:var(--text);font-size:20px;text-transform:uppercase;margin-top:10px}
+.pay button{background:var(--acc);color:#fff;border:0;border-radius:12px;padding:14px 18px;font-size:20px;cursor:pointer;margin-top:10px}
+.pay .buy{width:100%;font-size:22px;font-weight:600}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
 </head>
 <body>
-<main id="app">Загрузка…</main>
+<main id="app">Завантаження…</main>
 <script>
 const $=s=>document.querySelector(s), app=$('#app');
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const abs=t=>new URL(t.audioURL,location.href).href;
+const enc=encodeURIComponent, rel=u=>new URL(u,location.href).href;
 const fmt=x=>{x=Math.floor(x||0);return Math.floor(x/60)+':'+String(x%60).padStart(2,'0')};
+const plural=n=>n+(n%10===1&&n%100!==11?' екскурсія':[2,3,4].includes(n%10)&&![12,13,14].includes(n%100)?' екскурсії':' екскурсій');
+const ls=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch{return d}};
+const save=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch{}};
 const AC='audio-v1';
-let cities=[],view='cities',ci=0,ti=0,banner='',map=null,objUrl=null;
+let cities=[],view='cities',ci=0,ti=0,banner='',map=null,objUrl=null,api='',device='';
+let codes=ls('codes',{}),marks=ls('marks',{}),markers=[],pops=[];
+try{device=localStorage.getItem('dev')||'';if(!device){device=crypto.randomUUID();localStorage.setItem('dev',device)}}catch{device='d'+Date.now()}
 const dl=new Set(),busy=new Set(),audio=new Audio();
+const paid=t=>!!t.previewURL, unlocked=t=>!paid(t)||!!codes[t.id];
+const key=t=>paid(t)?'https://offline.local/'+enc(t.id):rel(t.audioURL);
+const srcUrl=t=>!paid(t)?rel(t.audioURL):codes[t.id]?`${api}/audio/${enc(t.id)}?code=${enc(codes[t.id])}&device=${enc(device)}`:rel(t.previewURL);
+
+/* Ілюстрації міст (якщо в tours.json вказано "image", показується фото) */
+const SKY={day:'#8ec5ff',night:'#1d2540',sunset:'#ffb27a'},MOOD={history:'day',mystic:'night',legends:'sunset'};
+const LM={
+lviv:'<rect x="30" y="80" width="60" height="26" fill="#d8b98f"/><rect x="50" y="35" width="20" height="45" fill="#cfa97b"/><polygon points="46,35 60,12 74,35" fill="#7a4b3a"/><rect x="59" y="3" width="2" height="10" fill="#444"/><circle cx="60" cy="50" r="6" fill="#fff" stroke="#555"/><rect x="38" y="88" width="9" height="14" fill="#6b4a38"/><rect x="56" y="88" width="9" height="14" fill="#6b4a38"/><rect x="73" y="88" width="9" height="14" fill="#6b4a38"/>',
+uzhhorod:'<ellipse cx="60" cy="116" rx="75" ry="22" fill="#5b8c5a"/><rect x="25" y="68" width="70" height="40" fill="#c8c0b0"/><rect x="18" y="52" width="18" height="56" fill="#b9b09f"/><rect x="84" y="52" width="18" height="56" fill="#b9b09f"/><polygon points="15,52 27,32 39,52" fill="#a94438"/><polygon points="81,52 93,32 105,52" fill="#a94438"/><path d="M52 108V86a8 8 0 0 1 16 0v22z" fill="#5a4636"/>',
+kyiv:'<rect x="25" y="70" width="70" height="36" fill="#f1ede4"/><ellipse cx="60" cy="54" rx="14" ry="17" fill="#f2b01e"/><ellipse cx="36" cy="63" rx="9" ry="11" fill="#f2b01e"/><ellipse cx="84" cy="63" rx="9" ry="11" fill="#f2b01e"/><rect x="59" y="26" width="2" height="12" fill="#f2b01e"/><rect x="55" y="30" width="10" height="2" fill="#f2b01e"/><rect x="40" y="82" width="8" height="18" fill="#5b7fa6"/><rect x="56" y="82" width="8" height="18" fill="#5b7fa6"/><rect x="72" y="82" width="8" height="18" fill="#5b7fa6"/>',
+odesa:[...Array(7)].map((_,i)=>{const w=24+i*9;return `<rect x="${60-w/2}" y="${36+i*10}" width="${w}" height="10" fill="${i%2?'#cdbd9d':'#e8dcc3'}"/>`}).join('')+'<rect y="106" width="120" height="14" fill="#3b78b5"/>'};
+function illo(id,mood='day'){
+  const sun=mood==='night'?'<circle cx="98" cy="22" r="9" fill="#f5f0c8"/><circle cx="20" cy="18" r="1.6" fill="#fff"/><circle cx="42" cy="32" r="1.6" fill="#fff"/><circle cx="75" cy="12" r="1.6" fill="#fff"/>':mood==='sunset'?'<circle cx="20" cy="96" r="15" fill="#ff7a45"/>':'<circle cx="98" cy="22" r="9" fill="#ffe27a"/>';
+  return `<svg viewBox="0 0 120 120" aria-hidden="true"><rect width="120" height="120" fill="${SKY[mood]||SKY.day}"/>${sun}<rect y="106" width="120" height="14" fill="${mood==='night'?'#243a2e':'#6f9a62'}"/>${LM[id]||''}${mood==='night'?'<rect width="120" height="120" fill="#0b1030" opacity=".22"/>':''}</svg>`;
+}
+const pic=(o,id,mood)=>`<span class="pic">${o.image?`<img src="${esc(rel(o.image))}" alt="">`:illo(id,mood)}</span>`;
 
 async function loadCatalog(){
   try{
     const r=await fetch('tours.json',{cache:'no-cache'});
     if(!r.ok)throw 0;
     const d=await r.json();
-    cities=d.cities;banner='';
-    try{localStorage.setItem('catalog',JSON.stringify(d))}catch{}
+    cities=d.cities;api=d.api||'';banner='';save('catalog',d);
   }catch{
-    let d=null;try{d=JSON.parse(localStorage.getItem('catalog'))}catch{}
-    if(d){cities=d.cities;banner='Нет связи с сервером. Показан сохранённый список.'}
-    else{cities=[];banner='Не удалось загрузить список экскурсий.'}
+    const d=ls('catalog',null);
+    if(d){cities=d.cities;api=d.api||'';banner='Немає зв’язку із сервером. Показано збережений список.'}
+    else{cities=[];banner='Не вдалося завантажити список екскурсій.'}
   }
 }
-async function refreshDl(){
-  try{(await (await caches.open(AC)).keys()).forEach(r=>dl.add(r.url))}catch{}
-}
+async function refreshDl(){try{(await (await caches.open(AC)).keys()).forEach(r=>dl.add(r.url))}catch{}}
 
 function render(){
   if(map){map.remove();map=null}
   if(view==='cities'){
-    app.innerHTML=`<div class="row"><h1>Выберите город</h1><button class="dl" id="rf">⟳</button></div>`+
-      cities.map((c,i)=>`<button class="item" data-c="${i}"><span>🏙 ${esc(c.name)}</span><span class="sub">${c.tours.length} ›</span></button>`).join('')+
+    app.innerHTML=`<div class="row"><h1>Оберіть місто</h1><button class="dl" id="rf" aria-label="Оновити">⟳</button></div>`+
+      cities.map((c,i)=>`<button class="item" data-c="${i}">${pic(c,c.id,'day')}<span class="txt"><b>${esc(c.name)}</b><small>${plural(c.tours.length)}</small></span><span class="chev">›</span></button>`).join('')+
       (banner?`<div class="foot">${esc(banner)}</div>`:'');
     $('#rf').onclick=async()=>{await loadCatalog();render()};
     app.querySelectorAll('[data-c]').forEach(b=>b.onclick=()=>{ci=+b.dataset.c;view='tours';render()});
   }else if(view==='tours'){
     const c=cities[ci];
-    app.innerHTML=`<button class="back" id="bk">‹ Города</button><h1>${esc(c.name)}</h1>`+
-      c.tours.map((t,i)=>`<button class="item" data-t="${i}"><span>${esc(t.title)}<small>${esc(t.description)}</small></span><span class="sub">${dl.has(abs(t))?'<span style="color:var(--ok)">⬇︎ </span>':''}›</span></button>`).join('');
+    app.innerHTML=`<button class="back" id="bk">‹ Міста</button><h1>${esc(c.name)}</h1>`+
+      c.tours.map((t,i)=>`<button class="item" data-t="${i}">${pic(t,c.id,MOOD[t.theme])}<span class="txt"><b>${esc(t.title)}</b><small>${esc(t.description)}</small><small class="tag">${unlocked(t)?'✓ Придбано':'🔒 '+esc(t.price||'')+' · 1 хвилина безкоштовно'}${dl.has(key(t))?' · ⬇︎':''}</small></span><span class="chev">›</span></button>`).join('');
     $('#bk').onclick=()=>{view='cities';render()};
     app.querySelectorAll('[data-t]').forEach(b=>b.onclick=()=>{ti=+b.dataset.t;view='player';render()});
   }else player();
@@ -85,37 +119,45 @@ function render(){
 
 async function setSource(t){
   if(objUrl){URL.revokeObjectURL(objUrl);objUrl=null}
-  const u=abs(t);
-  if(dl.has(u)){
+  const u=key(t);
+  if(dl.has(u)&&unlocked(t)){
     const r=await (await caches.open(AC)).match(u);
     if(r){objUrl=URL.createObjectURL(await r.blob());audio.src=objUrl;return}
   }
-  audio.src=u;
+  audio.src=srcUrl(t);
 }
 function showErr(m){const e=$('#err');if(e){e.textContent=m;e.hidden=false}}
 function skip(s){audio.currentTime=Math.max(0,Math.min(audio.duration||1e9,audio.currentTime+s))}
 
 async function download(t){
-  const u=abs(t);busy.add(u);player(true);
+  if(!unlocked(t))return;
+  const u=key(t);busy.add(u);player(true);
   let err='';
   try{
-    const r=await fetch(u);
+    const r=await fetch(srcUrl(t));
     if(!r.ok)throw 0;
-    if((r.headers.get('content-type')||'').startsWith('text')){err='По ссылке лежит не аудиофайл. Проверьте audioURL в tours.json.';throw 0}
+    if((r.headers.get('content-type')||'').startsWith('text')){err='За посиланням лежить не аудіофайл. Перевірте адресу в tours.json.';throw 0}
     await (await caches.open(AC)).put(u,r);dl.add(u);
-  }catch{err=err||'Не удалось скачать экскурсию. Проверьте интернет.'; if(dl.has(u))err=''}
+  }catch{err=err||'Не вдалося завантажити екскурсію. Перевірте інтернет.';if(dl.has(u))err=''}
   busy.delete(u);
   if(view==='player'&&cities[ci].tours[ti]===t){player(true);if(err)showErr(err)}
 }
-async function removeDl(t){
-  const u=abs(t);
-  try{await (await caches.open(AC)).delete(u)}catch{}
-  dl.delete(u);player(true);
+async function removeDl(t){const u=key(t);try{await (await caches.open(AC)).delete(u)}catch{}dl.delete(u);player(true)}
+
+async function activate(t,code){
+  code=(code||'').trim().toUpperCase();
+  if(!code)return showErr('Введіть код доступу.');
+  try{
+    const r=await fetch(`${api}/check?tour=${enc(t.id)}&code=${enc(code)}&device=${enc(device)}`);
+    const j=await r.json().catch(()=>({}));
+    if(!j.ok)return showErr(j.error||'Не вдалося перевірити код.');
+    codes[t.id]=code;save('codes',codes);audio.pause();player();
+  }catch{showErr('Не вдалося перевірити код. Перевірте інтернет.')}
 }
 
 function media(t){
   if(!('mediaSession' in navigator))return;
-  navigator.mediaSession.metadata=new MediaMetadata({title:t.title,artist:'Аудиоэкскурсия',album:cities[ci].name,
+  navigator.mediaSession.metadata=new MediaMetadata({title:t.title,artist:'Аудіоекскурсія',album:cities[ci].name,
     artwork:[{src:'icon-192.png',sizes:'192x192',type:'image/png'},{src:'icon-512.png',sizes:'512x512',type:'image/png'}]});
   const h=(a,f)=>{try{navigator.mediaSession.setActionHandler(a,f)}catch{}};
   h('play',()=>audio.play());h('pause',()=>audio.pause());
@@ -123,39 +165,74 @@ function media(t){
   h('seekto',e=>{audio.currentTime=e.seekTime});
 }
 
+/* Позначки місць: на карті й у списку */
+const pin=(i,on)=>L.divIcon({className:'pin'+(on?' on':''),html:`<span>${on?'✓':i+1}</span>`,iconSize:[34,34],iconAnchor:[17,17]});
+function toggle(t,i){
+  const n=t.stops[i].name,a=marks[t.id]||[];
+  marks[t.id]=a.includes(n)?a.filter(x=>x!==n):[...a,n];save('marks',marks);paint(t);
+}
+function paint(t){
+  const a=marks[t.id]||[];
+  t.stops.forEach((s,i)=>{
+    const on=a.includes(s.name);
+    if(markers[i])markers[i].setIcon(pin(i,on));
+    if(pops[i])pops[i].querySelector('button').textContent=on?'Зняти позначку':'Позначити ✓';
+    const cb=$('#m'+i);if(cb)cb.checked=on;
+  });
+  const c=$('#cnt');if(c)c.textContent=`Позначено ${a.length} з ${t.stops.length}`;
+}
+
 function player(keepAudio){
-  const c=cities[ci],t=c.tours[ti],u=abs(t);
-  const dlIcon=busy.has(u)?'⏳':dl.has(u)?'🗑':'⬇︎';
-  const st=t.stops||[];
-  app.innerHTML=`<div class="row"><button class="back" id="bk">‹ ${esc(c.name)}</button><button class="dl" id="dl">${dlIcon}</button></div>
-  ${st.length?'<div id="map"></div><div class="stops">'+st.map((s,i)=>`${i+1}. ${esc(s.name)}`).join(' · ')+'</div>':''}
-  <div class="center"><h1>${esc(t.title)}</h1><p>${esc(t.description)}</p></div>
+  const c=cities[ci],t=c.tours[ti],u=key(t),ok=unlocked(t),st=t.stops||[];
+  const dlIcon=!ok?'🔒':busy.has(u)?'⏳':dl.has(u)?'🗑':'⬇︎';
+  if(map){map.remove();map=null}
+  app.innerHTML=`<div class="row"><button class="back" id="bk">‹ ${esc(c.name)}</button><button class="dl" id="dl" aria-label="Завантажити">${dlIcon}</button></div>
+  <h1>${esc(t.title)}</h1><p class="d">${esc(t.description)}</p>
+  ${ok?'':`<div class="pay"><b>Безкоштовно: перша хвилина</b><p>Повна екскурсія — ${esc(t.price||'платно')}</p>${t.buyURL?'<button class="buy" id="buy">Купити</button>':''}<input id="code" placeholder="Вже є код доступу" autocapitalize="characters" autocomplete="off"><button id="act">Активувати</button></div>`}
   <div class="warn" id="err" hidden></div>
-  <input type="range" id="sl" min="0" max="100" step="0.1" value="0">
+  <input type="range" id="sl" min="0" max="100" step="0.1" value="0" aria-label="Перемотування">
   <div class="times"><span id="cur">0:00</span><span id="dur">0:00</span></div>
-  <div class="ctl"><button id="b15">⏪</button><button class="big" id="pp">▶️</button><button id="f15">⏩</button></div>`;
+  <div class="ctl"><button id="b15" aria-label="Назад на 15 секунд">⏪</button><button class="big" id="pp" aria-label="Відтворити">▶️</button><button id="f15" aria-label="Вперед на 15 секунд">⏩</button></div>
+  ${st.length?`<h2>Карта</h2><div id="map"></div><h2>Визначні місця</h2><div class="cnt" id="cnt"></div>`+
+    st.map((s,i)=>`<label class="stop"><input type="checkbox" id="m${i}"><span>${i+1}. ${esc(s.name)}</span></label>`).join(''):''}`;
+
+  markers=[];pops=[];
   if(st.length&&window.L){
-    map=L.map('map',{zoomControl:false});
+    map=L.map('map',{zoomControl:true});
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap'}).addTo(map);
     const pts=st.map(s=>[s.lat,s.lon]);
-    if(pts.length>1){L.polyline(pts,{color:'#0a84ff',weight:4}).addTo(map);map.fitBounds(pts,{padding:[30,30],maxZoom:17})}
+    if(pts.length>1){L.polyline(pts,{color:'#0a84ff',weight:4}).addTo(map);map.fitBounds(pts,{padding:[40,40],maxZoom:17})}
     else map.setView(pts[0],16);
-    st.forEach((s,i)=>L.marker([s.lat,s.lon],{icon:L.divIcon({className:'pin',html:`<span>${i+1}</span>`,iconSize:[26,26]})}).addTo(map).bindPopup(esc(s.name)));
+    st.forEach((s,i)=>{
+      const box=document.createElement('div');
+      box.innerHTML=`<b>${esc(s.name)}</b><button type="button"></button>`;
+      box.querySelector('button').onclick=()=>toggle(t,i);
+      pops[i]=box;
+      markers[i]=L.marker([s.lat,s.lon],{icon:pin(i,false)}).addTo(map).bindPopup(box);
+    });
   }else if($('#map'))$('#map').style.display='none';
+  st.forEach((s,i)=>{const cb=$('#m'+i);if(cb)cb.onchange=()=>toggle(t,i)});
+  paint(t);
 
   const sl=$('#sl'),pp=$('#pp');
   const sync=()=>{
+    if(!$('#cur'))return;
     sl.max=isFinite(audio.duration)?audio.duration:100;sl.value=audio.currentTime;
     $('#cur').textContent=fmt(audio.currentTime);$('#dur').textContent=fmt(audio.duration);
     pp.textContent=audio.paused?'▶️':'⏸';
   };
-  audio.ontimeupdate=audio.onloadedmetadata=audio.onplay=audio.onpause=audio.onended=sync;
-  audio.onerror=()=>showErr(navigator.onLine?'Не удаётся воспроизвести аудио. Проверьте ссылку в tours.json или удалите загрузку и скачайте заново.':'Нет интернета, а экскурсия не скачана.');
+  audio.ontimeupdate=audio.onloadedmetadata=audio.onplay=audio.onpause=sync;
+  if(!ok){
+    $('#act').onclick=()=>activate(t,$('#code').value);
+    if(t.buyURL)$('#buy').onclick=()=>window.open(t.buyURL,'_blank','noopener');
+  }
+  audio.onended=()=>{sync();if(!ok)showErr('Безкоштовна хвилина закінчилась. Щоб слухати далі, придбайте екскурсію або введіть код.')};
+  audio.onerror=()=>showErr(navigator.onLine?'Не вдається відтворити аудіо. Перевірте посилання в tours.json або видаліть завантаження й завантажте знову.':'Немає інтернету, а екскурсію не завантажено.');
   sl.oninput=()=>{audio.currentTime=+sl.value};
   pp.onclick=()=>{audio.paused?audio.play().catch(()=>{}):audio.pause()};
   $('#b15').onclick=()=>skip(-15);$('#f15').onclick=()=>skip(15);
   $('#bk').onclick=()=>{audio.pause();audio.removeAttribute('src');audio.load();view='tours';render()};
-  $('#dl').onclick=()=>{if(busy.has(u))return;dl.has(u)?removeDl(t):download(t)};
+  $('#dl').onclick=()=>{if(!ok||busy.has(u))return;dl.has(u)?removeDl(t):download(t)};
   if(!keepAudio){setSource(t).then(()=>{media(t);sync()})}else sync();
 }
 

@@ -1,6 +1,7 @@
 {
-  "name": "Аудиоэкскурсии",
-  "short_name": "Экскурсии",
+  "name": "Аудіоекскурсії",
+  "short_name": "Екскурсії",
+  "lang": "uk",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
