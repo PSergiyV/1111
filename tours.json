@@ -10,7 +10,7 @@
           "title": "Історія Львова",
           "description": "Від заснування міста до наших днів.",
           "theme": "history",
-          "previewURL": "Lvviv history demo.mp3.mp3",
+          "previewURL": "Lvviv history demo.mp3",
           "price": "49 грн",
           "buyURL": "https://example.com/pay/lviv-history",
           "stops": [
